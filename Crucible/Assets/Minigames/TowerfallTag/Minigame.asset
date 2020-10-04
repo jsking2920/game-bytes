@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e15ce27a3b28b498c2dcfffd025305, type: 3}
   m_Name: Minigame
   m_EditorClassIdentifier: 
-  Name: Test Minigame
+  Name: Towerfall Tag
   Description: This is just a test of the minigame player functionality to make sure
     everything works.
-  Year: 2019
-  Semester: 1
+  Year: 2020
+  Semester: 0
   Thumbnail: {fileID: 21300000, guid: 05d2b34c5d3a365448761905bbad7958, type: 3}
-  CreatorNames: Jan Orlowski
+  CreatorNames: Scott King
   P1_Objective: Press Button 1 to Win
   P2_Objective: Press Button 1 to Win
   P1_JoystickDescription: None
@@ -30,5 +30,5 @@ MonoBehaviour:
   GameScene:
     sceneAsset: {fileID: 102900000, guid: da97d35142268994f97934479625f405, type: 3}
     scenePath: Assets/Minigames/_MinigameTemplate/Scene_Template.unity
-  SupportedGameModes: 2
+  SupportedGameModes: 4
   ExcludeFromGameList: 1
