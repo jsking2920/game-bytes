@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: Minigame
   m_EditorClassIdentifier: 
   Name: Towerfall Tag
-  Description: This is just a test of the minigame player functionality to make sure
-    everything works.
+  Description: Don't be "it" when the timer runs out or you lose
   Year: 2020
   Semester: 0
   Thumbnail: {fileID: 21300000, guid: 05d2b34c5d3a365448761905bbad7958, type: 3}
   CreatorNames: Scott King, Nathan Oswell, Nicholas Hungria, Dora Xiao
-  P1_Objective: Press Button 1 to Win
-  P2_Objective: Press Button 1 to Win
-  P1_JoystickDescription: None
-  P1_Button1Description: Win
+  P1_Objective: Don't be "it"
+  P2_Objective: Don't be "it"
+  P1_JoystickDescription: Movement
+  P1_Button1Description: Jump
   P1_Button2Description: None
-  P2_JoystickDescription: None
-  P2_Button1Description: Win
+  P2_JoystickDescription: Movement
+  P2_Button1Description: Jump
   P2_Button2Description: None
   GameScene:
     sceneAsset: {fileID: 102900000, guid: da97d35142268994f97934479625f405, type: 3}
