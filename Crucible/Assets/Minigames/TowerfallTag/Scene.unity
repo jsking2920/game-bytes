@@ -810,7 +810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &635126287
 MonoBehaviour:
@@ -1316,12 +1316,12 @@ PrefabInstance:
     - target: {fileID: 2700476221196754580, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.28
+      value: -7.25
       objectReference: {fileID: 0}
     - target: {fileID: 2700476221196754580, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.74
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 2700476221196754580, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
         type: 3}
@@ -1351,7 +1351,7 @@ PrefabInstance:
     - target: {fileID: 2700476221196754580, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2700476221196754580, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
         type: 3}
@@ -1367,6 +1367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736179141343667232, guid: d8f04b4c9d7b5874b834e259bc9d02c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8f04b4c9d7b5874b834e259bc9d02c6, type: 3}
@@ -1652,7 +1657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938012639
 GameObject:
@@ -1735,7 +1740,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &2053209118
 LightingSettings:
