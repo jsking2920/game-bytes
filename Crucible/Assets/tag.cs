@@ -5,14 +5,25 @@ using UnityEngine;
 
 public class tag : MonoBehaviour
 {
-    private bool isTagged = false;
-    Rigidbody2D rb;
-    SpriteRenderer sr;
-    //string nameOfSprite;
+    //tracks whether or not a player is tagged
+    public bool isTagged = false;
+
+    //sprite for a player that's "it" and not "it"
+    public Sprite taggedSprite;
+    public Sprite notTaggedSprite;
+
+    //this players sprite renderer component
+    SpriteRenderer thisSpriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        thisSpriteRenderer = GetComponent<SpriteRenderer>();
+        //sets the player that starts tagged to the appropriate sprite
+        if (isTagged)
+        {
+            thisSpriteRenderer.sprite = taggedSprite;
+        }
     }
 
     // Update is called once per frame
@@ -20,20 +31,20 @@ public class tag : MonoBehaviour
     {
         
     }
-    /*
-    void onCollisionEnter2D(Collision2D col)
+
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Player")
+        //when two players collide the untagged player should become tagged
+        if (col.gameObject.tag == "Player" && !isTagged)
         {
-            //nameOfSprite = col.gameObject.GetComponent<SpriteRender>().sprite.name;
+            thisSpriteRenderer.sprite = taggedSprite;
+            isTagged = true;
         }
-    }
-    */
-    void OnCollisionExit2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            sr.sprite = (Sprite)Resources.Load<Sprite>("TowerfallTag/TempAssets/WhiteSquare.png");
+        //the tagged player should become untagged
+        else if (col.gameObject.tag == "Player" && isTagged){
+            thisSpriteRenderer.sprite = notTaggedSprite;
+            isTagged = false;
         }
+ 
     }
 }
