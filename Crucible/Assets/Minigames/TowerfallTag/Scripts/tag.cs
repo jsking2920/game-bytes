@@ -26,12 +26,6 @@ public class tag : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         //when two players collide the untagged player should become tagged
