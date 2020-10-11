@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3416996352537977382}
   - component: {fileID: 3452366088415336598}
   - component: {fileID: -2926659203019907802}
+  - component: {fileID: 4172374728727628131}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -148,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  playerNumber: 1
   jumpForce: 10
+  playerNumber: 1
 --- !u!114 &3452366088415336598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +183,15 @@ MonoBehaviour:
   grapplingHook: {fileID: 1815865344250323228, guid: 51c955e5e422c5548bc3e52632ea2188,
     type: 3}
   hookVelocity: 15
+--- !u!114 &4172374728727628131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416996352537977401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4abbc5e53a8de544afbf8e0bbb2b5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    //scaling factors for movement
-    public float moveSpeed;
-    public float jumpForce;
+    //scaling factors for movement -- not affected by powerups
+    public float defaultMoveSpeed;
+    public float defaultJumpForce;
+    //scaling facotrs for movement -- affected by powerups
+    float moveSpeed;
+    float jumpForce;
     //player in control of this object
     public int playerNumber;
 
@@ -17,6 +20,8 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         thisRigidBody = GetComponent<Rigidbody2D>();
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
     }
 
     // Update is called once per frame
@@ -32,5 +37,14 @@ public class MovementController : MonoBehaviour
             //jump by adding upward force
             thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
+    }
+
+    public void setMoveSpeed(float spd)
+    {
+        moveSpeed = spd;
+    }
+    public void setJumpForce(float frc)
+    {
+        jumpForce = frc;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class powerUpPickUp : MonoBehaviour
@@ -10,11 +11,13 @@ public class powerUpPickUp : MonoBehaviour
     //when something collides with this trigger, this function is called
     void OnTriggerEnter2D(Collider2D col)
     {
-        //destorys powerup when a player picks it up and bumps their speed
-        if (col.gameObject.tag == "Player") { 
-            MovementController thisMovementController = col.gameObject.GetComponent<MovementController>();
-            thisMovementController.moveSpeed += speedBoost;
-
+        //destorys powerup when a player picks it up, clears existing powerups, then applies the powerup
+        if (col.gameObject.tag == "Player") {
+            PowerUpPlayer powerUpPlayer = col.gameObject.GetComponent<PowerUpPlayer>();
+            System.Random rnd = new System.Random();
+            int powerUpType = rnd.Next(1, 3);
+            powerUpPlayer.cleansePowerUps();
+            powerUpPlayer.setPowerUp(powerUpType);
             Destroy(this.gameObject);
         }
   
