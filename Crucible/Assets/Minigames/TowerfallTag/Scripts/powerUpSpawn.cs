@@ -6,7 +6,7 @@ using UnityEngine;
 public class powerUpSpawn : MonoBehaviour
 {
     //time between a power up being picked up and a new one spawning
-    public float resetTime = 5.0f;
+    public float resetTime;
     //the powerUp prefab that wil get spawned
     public GameObject powerUp;
 

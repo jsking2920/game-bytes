@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    //scaling factors for movement
+    public float moveSpeed;
+    public float jumpForce;
+    //player in control of this object
+    public int playerNumber;
 
-    public float moveSpeed = 5.0f;
-    public int playerNumber = 1;
-    public float jumpForce = 5.0f;
-    Rigidbody2D rb;
+    Rigidbody2D thisRigidBody;
+    private Vector3 inputVector;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        thisRigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //Left and right controls
-        if (MinigameInputHelper.GetHorizontalAxis(playerNumber) > 0.1)
+        //Horizontal movement. Maintains y velocity
+        inputVector = new Vector3(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y, 0);
+        thisRigidBody.velocity = inputVector;
+        
+        //Only jumps if the player is not already jumping or falling
+        if (MinigameInputHelper.IsButton1Down(playerNumber) && thisRigidBody.velocity.y < 0.001f && thisRigidBody.velocity.y > -0.001f)
         {
-            transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-        } else if (MinigameInputHelper.GetHorizontalAxis(playerNumber) < -0.1)
-        {
-            transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-        }
-
-        //Jump
-        if (MinigameInputHelper.IsButton1Down(playerNumber) && rb.velocity.y < 0.001f && rb.velocity.y > -0.001f)
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            //jump by adding upward force
+            thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 }

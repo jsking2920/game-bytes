@@ -5,7 +5,7 @@ using UnityEngine;
 public class powerUpPickUp : MonoBehaviour
 {
     //amount that playes speed is boosted by
-    public float speedBoost = 10.0f;
+    public float speedBoost;
 
     //when something collides with this trigger, this function is called
     void OnTriggerEnter2D(Collider2D col)
