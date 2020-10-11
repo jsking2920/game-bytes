@@ -48,6 +48,14 @@ public class cameraFollow : MonoBehaviour
             if (distance > minOrthoSize && distance < maxOrthoSize)
             {
                 cam.orthographicSize = distance;
+            } //else set it to max or min
+            else if (distance < minOrthoSize) 
+            {
+                cam.orthographicSize = minOrthoSize;
+            }
+            else if (distance > maxOrthoSize)
+            {
+                cam.orthographicSize = maxOrthoSize;
             }
         }
         // moves camera using slerp
