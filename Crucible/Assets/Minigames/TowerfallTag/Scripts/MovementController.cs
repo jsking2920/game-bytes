@@ -32,7 +32,7 @@ public class MovementController : MonoBehaviour
         thisRigidBody.velocity = inputVector;
         
         //Only jumps if the player is not already jumping or falling
-        if (MinigameInputHelper.IsButton1Down(playerNumber) && thisRigidBody.velocity.y < 0.001f && thisRigidBody.velocity.y > -0.001f)
+        if (MinigameInputHelper.IsButton1Down(playerNumber) && thisRigidBody.velocity.y == 0f)
         {
             //jump by adding upward force
             thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);

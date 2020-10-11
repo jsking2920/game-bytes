@@ -451,7 +451,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6200000, guid: 339cc93570a506345aa35b49c300565e, type: 2}
     - target: {fileID: 3416996352537977401, guid: 463466b5826ecfa45ab72175040ccc75,
         type: 3}
       propertyPath: m_Name
@@ -1416,6 +1416,16 @@ PrefabInstance:
         type: 3}
       propertyPath: playerNumber
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416996352537977382, guid: 463466b5826ecfa45ab72175040ccc75,
+        type: 3}
+      propertyPath: defaultMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416996352537977382, guid: 463466b5826ecfa45ab72175040ccc75,
+        type: 3}
+      propertyPath: defaultJumpForce
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3416996352537977401, guid: 463466b5826ecfa45ab72175040ccc75,
         type: 3}
