@@ -51,6 +51,7 @@ public class MovementController : MonoBehaviour
             //Double jump
             else if (!doubleJumpUsed && hasDoubleJump)
             {
+                thisRigidBody.velocity = new Vector3(thisRigidBody.velocity.x, 0, 0);
                 thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 doubleJumpUsed = true;
             }
