@@ -43,7 +43,7 @@ public class MovementController : MonoBehaviour
         {
 
             //Only jumps if the player is not already jumping or falling
-            if (thisRigidBody.velocity.y == 0f) {
+            if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f) {
                 //jump by adding upward force
                 thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 doubleJumpUsed = false;
