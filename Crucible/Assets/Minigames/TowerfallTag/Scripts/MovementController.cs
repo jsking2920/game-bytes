@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    public Animator animator;
     //scaling factors for movement -- not affected by powerups
     public float defaultMoveSpeed;
     public float defaultJumpForce;
@@ -22,6 +23,7 @@ public class MovementController : MonoBehaviour
     public bool hasJetPack = false;
     public float jetPackVelocity = 15.0f;
 
+    bool tagged;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +38,10 @@ public class MovementController : MonoBehaviour
         //Horizontal movement. Maintains y velocity
         inputVector = new Vector3(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y, 0);
         thisRigidBody.velocity = inputVector;
-        
         //Jump input
         if (MinigameInputHelper.IsButton1Down(playerNumber))
         {
-            
+
             //Only jumps if the player is not already jumping or falling
             if (thisRigidBody.velocity.y == 0f) {
                 //jump by adding upward force
@@ -53,7 +54,7 @@ public class MovementController : MonoBehaviour
                 thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 doubleJumpUsed = true;
             }
-            
+
         }
 
         //Jetpack input
@@ -63,6 +64,22 @@ public class MovementController : MonoBehaviour
             thisRigidBody.velocity = velVector;
 
         }
+
+        //Animation stuff
+        tagged = this.gameObject.GetComponent<tag>().isTagged;
+        animator.SetBool("tagged", tagged);
+        animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
+        animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
+        //Flip the sprite
+        if(thisRigidBody.velocity.x > 0.1)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if(thisRigidBody.velocity.x < -0.1)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
     }
 
     public void setMoveSpeed(float spd)
