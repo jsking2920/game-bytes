@@ -15,6 +15,12 @@ public class MovementController : MonoBehaviour
 
     Rigidbody2D thisRigidBody;
     private Vector3 inputVector;
+    private Vector3 velVector;
+
+    public bool hasDoubleJump = false;
+    bool doubleJumpUsed = false;
+    public bool hasJetPack = false;
+    public float jetPackVelocity = 15.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +37,31 @@ public class MovementController : MonoBehaviour
         inputVector = new Vector3(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y, 0);
         thisRigidBody.velocity = inputVector;
         
-        //Only jumps if the player is not already jumping or falling
-        if (MinigameInputHelper.IsButton1Down(playerNumber) && thisRigidBody.velocity.y == 0f)
+        //Jump input
+        if (MinigameInputHelper.IsButton1Down(playerNumber))
         {
-            //jump by adding upward force
-            thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            
+            //Only jumps if the player is not already jumping or falling
+            if (thisRigidBody.velocity.y == 0f) {
+                //jump by adding upward force
+                thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                doubleJumpUsed = false;
+            }
+            //Double jump
+            else if (!doubleJumpUsed && hasDoubleJump)
+            {
+                thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                doubleJumpUsed = true;
+            }
+            
+        }
+
+        //Jetpack input
+        if (MinigameInputHelper.IsButton1Held(playerNumber) && hasJetPack)
+        {
+            velVector = new Vector3(thisRigidBody.velocity.x, jetPackVelocity, 0);
+            thisRigidBody.velocity = velVector;
+
         }
     }
 
