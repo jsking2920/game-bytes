@@ -12,6 +12,8 @@ public class tag : MonoBehaviour
     public Sprite taggedSprite;
     public Sprite notTaggedSprite;
 
+    public GameObject bomb;
+
     int playerNumber;
 
     //this players sprite renderer component
@@ -28,6 +30,7 @@ public class tag : MonoBehaviour
         if (isTagged)
         {
             thisSpriteRenderer.sprite = taggedSprite;
+            bomb.GetComponent<SpriteRenderer>().enabled = true;
         }
         else 
         {
@@ -44,12 +47,14 @@ public class tag : MonoBehaviour
             thisSpriteRenderer.sprite = taggedSprite;
             isTagged = true;
             MinigameController.Instance.AddScore(playerNumber, -1);
+            bomb.GetComponent<SpriteRenderer>().enabled = true;
         }
         //the tagged player should become untagged
         else if (col.gameObject.tag == "Player" && isTagged){
             thisSpriteRenderer.sprite = notTaggedSprite;
             isTagged = false;
             MinigameController.Instance.AddScore(playerNumber, 1);
+            bomb.GetComponent<SpriteRenderer>().enabled = false;
         }
  
     }

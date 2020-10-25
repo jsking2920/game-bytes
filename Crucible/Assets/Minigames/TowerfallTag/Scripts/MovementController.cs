@@ -71,14 +71,17 @@ public class MovementController : MonoBehaviour
         animator.SetBool("tagged", tagged);
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
         animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
+        GameObject bomb = this.gameObject.GetComponent<tag>().bomb;
         //Flip the sprite
-        if(thisRigidBody.velocity.x > 0.1)
+        if (thisRigidBody.velocity.x > 0.1)
         {
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            bomb.transform.localPosition = new Vector3(Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
         }
         else if(thisRigidBody.velocity.x < -0.1)
         {
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            bomb.transform.localPosition = new Vector3(-1f*Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
         }
 
     }
