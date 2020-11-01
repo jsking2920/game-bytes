@@ -13,12 +13,14 @@ public class shootHook : MonoBehaviour
     private int playerNumber;
     private GameObject newHook;
 
+    public bool hasHook = false;
+
 
     // Update is called once per frame
     void Update()
     {
         // checks for button 2 input every frame
-        if (MinigameInputHelper.IsButton2Down(playerNumber)){
+        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasHook){
 
             // gets player number
             playerNumber = GetComponent<MovementController>().playerNumber;

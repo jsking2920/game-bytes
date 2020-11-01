@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
     public bool hasDoubleJump = false;
     bool doubleJumpUsed = false;
     public bool hasJetPack = false;
-    public bool hasDash = false;
+    public bool hasDash;
     public float jetPackVelocity = 15.0f;
 
     bool tagged;
@@ -31,7 +31,6 @@ public class MovementController : MonoBehaviour
         thisRigidBody = GetComponent<Rigidbody2D>();
         moveSpeed = defaultMoveSpeed;
         jumpForce = defaultJumpForce;
-        hasDash = true;
     }
 
     // Update is called once per frame
@@ -60,12 +59,16 @@ public class MovementController : MonoBehaviour
 
         }
 
-        if (MinigameInputHelper.IsButton2Down(playerNumber))
+        // Dash
+        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash)
         {
-            //calls dash function
-            if (hasDash)
+            if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
             {
-                dash();
+                thisRigidBody.AddForce(transform.right * jumpForce * 10.0f, ForceMode2D.Impulse);
+            }
+            else if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
+            {
+                thisRigidBody.AddForce(transform.right * jumpForce * -10.0f, ForceMode2D.Impulse);
             }
         }
 
@@ -104,18 +107,5 @@ public class MovementController : MonoBehaviour
     public void setJumpForce(float frc)
     {
         jumpForce = frc;
-    }
-    public void dash()
-    {
-        if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
-        {
-            inputVector = new Vector3(150, thisRigidBody.velocity.y, 0);
-            thisRigidBody.velocity = inputVector;
-        }
-        else if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
-        {
-            inputVector = new Vector3(-150, thisRigidBody.velocity.y, 0);
-            thisRigidBody.velocity = inputVector;
-        }
     }
 }
