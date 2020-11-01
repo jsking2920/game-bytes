@@ -68,7 +68,7 @@ public class MovementController : MonoBehaviour
         }
 
         // Dash
-        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash)
+        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash && !isDashing)
         {
             if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
             {
