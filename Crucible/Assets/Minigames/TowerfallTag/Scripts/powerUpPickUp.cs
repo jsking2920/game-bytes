@@ -15,7 +15,7 @@ public class powerUpPickUp : MonoBehaviour
         if (col.gameObject.tag == "Player") {
             PowerUpPlayer powerUpPlayer = col.gameObject.GetComponent<PowerUpPlayer>();
             System.Random rnd = new System.Random();
-            int powerUpType = rnd.Next(1, 5);
+            int powerUpType = rnd.Next(1, 6);
             powerUpPlayer.cleansePowerUps();
             powerUpPlayer.setPowerUp(powerUpType);
             Destroy(this.gameObject);

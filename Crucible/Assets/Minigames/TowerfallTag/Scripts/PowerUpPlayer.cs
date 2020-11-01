@@ -40,6 +40,9 @@ public class PowerUpPlayer : MonoBehaviour
             case 4:
                 movementController.hasJetPack = true;
                 break;
+            case 5:
+                movementController.hasDash = true;
+                break;
             default:
                 break;
         }
@@ -52,6 +55,6 @@ public class PowerUpPlayer : MonoBehaviour
         movementController.setJumpForce(movementController.defaultJumpForce);
         movementController.hasDoubleJump = false;
         movementController.hasJetPack = false;
-
+        movementController.hasDash = false;
     }
 }

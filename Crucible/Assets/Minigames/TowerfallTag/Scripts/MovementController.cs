@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour
     public bool hasDoubleJump = false;
     bool doubleJumpUsed = false;
     public bool hasJetPack = false;
+    public bool hasDash = false;
     public float jetPackVelocity = 15.0f;
 
     bool tagged;
@@ -30,6 +31,7 @@ public class MovementController : MonoBehaviour
         thisRigidBody = GetComponent<Rigidbody2D>();
         moveSpeed = defaultMoveSpeed;
         jumpForce = defaultJumpForce;
+        hasDash = true;
     }
 
     // Update is called once per frame
@@ -56,6 +58,15 @@ public class MovementController : MonoBehaviour
                 doubleJumpUsed = true;
             }
 
+        }
+
+        if (MinigameInputHelper.IsButton2Down(playerNumber))
+        {
+            //calls dash function
+            if (hasDash)
+            {
+                dash();
+            }
         }
 
         //Jetpack input
@@ -93,5 +104,18 @@ public class MovementController : MonoBehaviour
     public void setJumpForce(float frc)
     {
         jumpForce = frc;
+    }
+    public void dash()
+    {
+        if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
+        {
+            inputVector = new Vector3(150, thisRigidBody.velocity.y, 0);
+            thisRigidBody.velocity = inputVector;
+        }
+        else if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
+        {
+            inputVector = new Vector3(-150, thisRigidBody.velocity.y, 0);
+            thisRigidBody.velocity = inputVector;
+        }
     }
 }
