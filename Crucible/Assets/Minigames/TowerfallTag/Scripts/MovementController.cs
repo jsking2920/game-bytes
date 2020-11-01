@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
     public bool hasDoubleJump = false;
     bool doubleJumpUsed = false;
     public bool hasJetPack = false;
-    public bool hasDash;
+    public bool hasDash = false;
     public float jetPackVelocity = 15.0f;
 
     bool tagged;
@@ -31,6 +31,8 @@ public class MovementController : MonoBehaviour
         thisRigidBody = GetComponent<Rigidbody2D>();
         moveSpeed = defaultMoveSpeed;
         jumpForce = defaultJumpForce;
+        hasDash = true;
+        animator.SetInteger("playerNumber", playerNumber);
     }
 
     // Update is called once per frame
@@ -59,16 +61,12 @@ public class MovementController : MonoBehaviour
 
         }
 
-        // Dash
-        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash)
+        if (MinigameInputHelper.IsButton2Down(playerNumber))
         {
-            if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
+            //calls dash function
+            if (hasDash)
             {
-                thisRigidBody.AddForce(transform.right * jumpForce * 10.0f, ForceMode2D.Impulse);
-            }
-            else if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
-            {
-                thisRigidBody.AddForce(transform.right * jumpForce * -10.0f, ForceMode2D.Impulse);
+                dash();
             }
         }
 
@@ -82,7 +80,6 @@ public class MovementController : MonoBehaviour
 
         //Animation stuff
         tagged = this.gameObject.GetComponent<tag>().isTagged;
-        animator.SetBool("tagged", tagged);
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
         animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
         GameObject bomb = this.gameObject.GetComponent<tag>().bomb;
@@ -107,5 +104,18 @@ public class MovementController : MonoBehaviour
     public void setJumpForce(float frc)
     {
         jumpForce = frc;
+    }
+    public void dash()
+    {
+        if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
+        {
+            inputVector = new Vector3(150, thisRigidBody.velocity.y, 0);
+            thisRigidBody.velocity = inputVector;
+        }
+        else if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
+        {
+            inputVector = new Vector3(-150, thisRigidBody.velocity.y, 0);
+            thisRigidBody.velocity = inputVector;
+        }
     }
 }
