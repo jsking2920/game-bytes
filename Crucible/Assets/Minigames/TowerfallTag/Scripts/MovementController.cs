@@ -56,6 +56,7 @@ public class MovementController : MonoBehaviour
                 //jump by adding upward force
                 thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 doubleJumpUsed = false;
+                animator.SetBool("isJumping", true);
             }
             //Double jump
             else if (!doubleJumpUsed && hasDoubleJump)
@@ -65,10 +66,13 @@ public class MovementController : MonoBehaviour
                 doubleJumpUsed = true;
             }
 
+        } else if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f)
+        {
+            animator.SetBool("isJumping", false);
         }
 
-        // Dash
-        if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash && !isDashing)
+            // Dash
+            if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash && !isDashing)
         {
             if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
             {
