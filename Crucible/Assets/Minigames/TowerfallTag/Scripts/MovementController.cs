@@ -32,6 +32,7 @@ public class MovementController : MonoBehaviour
         moveSpeed = defaultMoveSpeed;
         jumpForce = defaultJumpForce;
         hasDash = true;
+        animator.SetInteger("playerNumber", playerNumber);
     }
 
     // Update is called once per frame
@@ -79,7 +80,6 @@ public class MovementController : MonoBehaviour
 
         //Animation stuff
         tagged = this.gameObject.GetComponent<tag>().isTagged;
-        animator.SetBool("tagged", tagged);
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
         animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
         GameObject bomb = this.gameObject.GetComponent<tag>().bomb;
