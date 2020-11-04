@@ -156,6 +156,7 @@ MonoBehaviour:
   hasDoubleJump: 0
   hasJetPack: 0
   hasDash: 0
+  isDashing: 0
   jetPackVelocity: 7
 --- !u!114 &3452366088415336598
 MonoBehaviour:
@@ -190,6 +191,7 @@ MonoBehaviour:
   grapplingHook: {fileID: 1815865344250323228, guid: 51c955e5e422c5548bc3e52632ea2188,
     type: 3}
   hookVelocity: 15
+  hasHook: 0
 --- !u!114 &4172374728727628131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 7509354070195838789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1, y: -0.0626, z: 0}
-  m_LocalScale: {x: 0.027615419, y: 0.024963949, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_Children: []
   m_Father: {fileID: 3416996352537977378}
   m_RootOrder: 0
