@@ -36,7 +36,7 @@ MonoBehaviour:
     type: 3}
   P1WinGraphicsPrefab: {fileID: 3757004447918800238, guid: 6235b43fddb25874f8615577f17a3c72,
     type: 3}
-  TieGraphicsPrefab: {fileID: 3757004447918800238, guid: 5769b38e65030c14ebc856a56d709f1e,
+  TieGraphicsPrefab: {fileID: 3757004447918800238, guid: d89ddd1039e60704a84bacab5431a107,
     type: 3}
   P2WinGraphicsPrefab: {fileID: 3757004447918800238, guid: ba70f74821e7939409fac4a60429defa,
     type: 3}

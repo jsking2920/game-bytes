@@ -86,7 +86,11 @@ The following packages were updated:
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
 
+<<<<<<< HEAD
 === Sun Sep 27 16:50:27 2020
+=======
+=== Sun Sep 27 16:23:34 2020
+>>>>>>> branch-scott-test
 
 Packages were changed.
 Update Mode: updateDependencies
