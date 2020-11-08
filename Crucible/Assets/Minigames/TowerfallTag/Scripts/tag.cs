@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Versioning;
 using UnityEngine;
 
-public class tag : MonoBehaviour
+public class Tag : MonoBehaviour
 {
     //tracks whether or not a player is tagged
     public bool isTagged = false;
@@ -18,12 +18,14 @@ public class tag : MonoBehaviour
 
     //this players sprite renderer component
     SpriteRenderer thisSpriteRenderer;
+    MovementController movementController;
 
     // Start is called before the first frame update
     void Start()
     {
         //Get the player number from the MovementController script
         playerNumber = this.gameObject.GetComponent<MovementController>().playerNumber;
+        movementController = GetComponent<MovementController>();
 
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
         //sets the player that starts tagged to the appropriate sprite
@@ -41,13 +43,16 @@ public class tag : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        //when two players collide the untagged player should become tagged
+        //when two players collide the untagged player should become tagged and stunned
         if (col.gameObject.tag == "Player" && !isTagged)
         {
             thisSpriteRenderer.sprite = taggedSprite;
             isTagged = true;
             MinigameController.Instance.AddScore(playerNumber, -1);
             bomb.GetComponent<SpriteRenderer>().enabled = true;
+            movementController.stunned = true;
+            movementController.stunTime = movementController.stunDuration;
+            
         }
         //the tagged player should become untagged
         else if (col.gameObject.tag == "Player" && isTagged){
