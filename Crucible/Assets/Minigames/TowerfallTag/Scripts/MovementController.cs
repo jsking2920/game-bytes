@@ -26,6 +26,11 @@ public class MovementController : MonoBehaviour
     public bool isDashing;
     public float jetPackVelocity = 15.0f;
 
+    public float stunDuration = 0.5f;
+    public bool stunned = false;
+    public float stunTime = 0;
+
+
     bool tagged;
     // Start is called before the first frame update
     void Start()
@@ -39,70 +44,81 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Horizontal movement. Maintains y velocity
-        inputVector = new Vector2(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y);
-        if (inputVector != thisRigidBody.velocity && !isDashing)
+        //Don't take any input if stunned
+        if (stunned)
         {
-            thisRigidBody.velocity = inputVector;
-        }
-      
-        //Jump input
-        if (MinigameInputHelper.IsButton1Down(playerNumber))
-        {
-
-            //Only jumps if the player is not already jumping or falling
-            if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f)
-            {
-                //jump by adding upward force
-                thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                doubleJumpUsed = false;
-                animator.SetBool("isJumping", true);
+            stunTime -= Time.deltaTime;
+            if (stunTime <= 0){
+                stunned = false;
             }
-            //Double jump
-            else if (!doubleJumpUsed && hasDoubleJump)
+            thisRigidBody.velocity = new Vector2(0, thisRigidBody.velocity.y);
+        }
+        else {
+
+            //Horizontal movement. Maintains y velocity
+            inputVector = new Vector2(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y);
+            if (inputVector != thisRigidBody.velocity && !isDashing)
             {
-                thisRigidBody.velocity = new Vector3(thisRigidBody.velocity.x, 0, 0);
-                thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                doubleJumpUsed = true;
+                thisRigidBody.velocity = inputVector;
             }
 
-        } else if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f)
-        {
-            animator.SetBool("isJumping", false);
-        }
+            //Jump input
+            if (MinigameInputHelper.IsButton1Down(playerNumber))
+            {
+
+                //Only jumps if the player is not already jumping or falling
+                if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f)
+                {
+                    //jump by adding upward force
+                    thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                    doubleJumpUsed = false;
+                    animator.SetBool("isJumping", true);
+                }
+                //Double jump
+                else if (!doubleJumpUsed && hasDoubleJump)
+                {
+                    thisRigidBody.velocity = new Vector3(thisRigidBody.velocity.x, 0, 0);
+                    thisRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                    doubleJumpUsed = true;
+                }
+
+            } else if (thisRigidBody.velocity.y < 0.01f && thisRigidBody.velocity.y > -0.01f)
+            {
+                animator.SetBool("isJumping", false);
+            }
 
             // Dash
             if (MinigameInputHelper.IsButton2Down(playerNumber) && hasDash && !isDashing)
-        {
-            if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
             {
-                thisRigidBody.AddForce(transform.right * 10f, ForceMode2D.Impulse);
-                isDashing = true;
-                Invoke("resetDash", 0.5f);
+                if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
+                {
+                    thisRigidBody.AddForce(transform.right * 10f, ForceMode2D.Impulse);
+                    isDashing = true;
+                    Invoke("resetDash", 0.5f);
+
+                }
+                else
+                {
+                    thisRigidBody.AddForce(transform.right * -10f, ForceMode2D.Impulse);
+                    isDashing = true;
+                    Invoke("resetDash", 0.5f);
+                }
+            }
+
+
+            //Jetpack input
+            if (MinigameInputHelper.IsButton1Held(playerNumber) && hasJetPack)
+            {
+                velVector = new Vector3(thisRigidBody.velocity.x, jetPackVelocity, 0);
+                thisRigidBody.velocity = velVector;
 
             }
-            else
-            {
-                thisRigidBody.AddForce(transform.right * -10f, ForceMode2D.Impulse);
-                isDashing = true;
-                Invoke("resetDash", 0.5f);
-            }
         }
-
-
-        //Jetpack input
-        if (MinigameInputHelper.IsButton1Held(playerNumber) && hasJetPack)
-        {
-            velVector = new Vector3(thisRigidBody.velocity.x, jetPackVelocity, 0);
-            thisRigidBody.velocity = velVector;
-
-        }
-
         //Animation stuff
-        tagged = this.gameObject.GetComponent<tag>().isTagged;
+        tagged = GetComponent<Tag>().isTagged;
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
         animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
-        GameObject bomb = this.gameObject.GetComponent<tag>().bomb;
+        GameObject bomb = GetComponent<Tag>().bomb;
         //Flip the sprite
         if (thisRigidBody.velocity.x > 0.1)
         {
