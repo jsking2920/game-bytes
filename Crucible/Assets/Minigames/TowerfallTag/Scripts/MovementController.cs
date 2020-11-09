@@ -24,9 +24,9 @@ public class MovementController : MonoBehaviour
     public bool hasJetPack = false;
     public bool hasDash;
     public bool isDashing;
-    public float jetPackVelocity = 15.0f;
+    public float jetPackVelocity = 12.0f;
 
-    public float stunDuration = 0.5f;
+    public float stunDuration = 0.75f;
     public bool stunned = false;
     public float stunTime = 0;
 
@@ -95,14 +95,14 @@ public class MovementController : MonoBehaviour
             {
                 if (this.gameObject.GetComponent<SpriteRenderer>().flipX == false)
                 {
-                    thisRigidBody.AddForce(transform.right * 10f, ForceMode2D.Impulse);
+                    thisRigidBody.AddForce(transform.right * 15f, ForceMode2D.Impulse);
                     isDashing = true;
                     Invoke("resetDash", 0.5f);
 
                 }
                 else
                 {
-                    thisRigidBody.AddForce(transform.right * -10f, ForceMode2D.Impulse);
+                    thisRigidBody.AddForce(transform.right * -15f, ForceMode2D.Impulse);
                     isDashing = true;
                     Invoke("resetDash", 0.5f);
                 }

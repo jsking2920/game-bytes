@@ -7,8 +7,8 @@ public class PowerUpPlayer : MonoBehaviour
 {
 
     //Store current power up; 0 = None, 1 = Speed Boost, 2 = Jump Boost
-    public float powerUpSpeedScalar = 2;
-    public float powerUpJumpScalar = 2;
+    public float powerUpSpeedScalar = 1.75f;
+    public float powerUpJumpScalar = 1.5f;
     public TextMeshProUGUI powerUpText;
 
 
