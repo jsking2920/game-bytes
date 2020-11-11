@@ -8,10 +8,6 @@ public class Tag : MonoBehaviour
     //tracks whether or not a player is tagged
     public bool isTagged = false;
 
-    //sprite for a player that's "it" and not "it"
-    public Sprite taggedSprite;
-    public Sprite notTaggedSprite;
-
     public GameObject bomb;
 
     int playerNumber;
@@ -31,12 +27,12 @@ public class Tag : MonoBehaviour
         //sets the player that starts tagged to the appropriate sprite
         if (isTagged)
         {
-            thisSpriteRenderer.sprite = taggedSprite;
             bomb.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             //Set the player's score to 1 since they're currently winning
+            bomb.GetComponent<SpriteRenderer>().enabled = false;
             MinigameController.Instance.AddScore(playerNumber, 1);
         }
     }
@@ -46,7 +42,6 @@ public class Tag : MonoBehaviour
         //when two players collide the untagged player should become tagged and stunned
         if (col.gameObject.tag == "Player" && !isTagged)
         {
-            thisSpriteRenderer.sprite = taggedSprite;
             isTagged = true;
             MinigameController.Instance.AddScore(playerNumber, -1);
             bomb.GetComponent<SpriteRenderer>().enabled = true;
@@ -57,7 +52,6 @@ public class Tag : MonoBehaviour
         //the tagged player should become untagged
         else if (col.gameObject.tag == "Player" && isTagged)
         {
-            thisSpriteRenderer.sprite = notTaggedSprite;
             isTagged = false;
             MinigameController.Instance.AddScore(playerNumber, 1);
             bomb.GetComponent<SpriteRenderer>().enabled = false;

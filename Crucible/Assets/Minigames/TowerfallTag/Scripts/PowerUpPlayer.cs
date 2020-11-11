@@ -10,7 +10,8 @@ public class PowerUpPlayer : MonoBehaviour
     public float powerUpSpeedScalar = 1.75f;
     public float powerUpJumpScalar = 1.5f;
     public TextMeshProUGUI powerUpText;
-
+    public float decayTime;
+    private bool hasPowerUp = false;
 
     MovementController movementController;
     int playerNumber;
@@ -35,25 +36,70 @@ public class PowerUpPlayer : MonoBehaviour
         switch (powerUpType)
         {
             case 1:
-                movementController.setMoveSpeed(movementController.defaultMoveSpeed * powerUpSpeedScalar);
-                powerUpText.SetText("Speed boost!");
-                break;
+                if (!hasPowerUp)
+                {
+                    movementController.setMoveSpeed(movementController.defaultMoveSpeed * powerUpSpeedScalar);
+                    powerUpText.SetText("Speed boost!");
+                    Invoke("cleansePowerUps", decayTime);
+                    hasPowerUp = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             case 2:
-                movementController.setJumpForce(movementController.defaultJumpForce * powerUpJumpScalar);
-                powerUpText.SetText("Jump Boost!");
-                break;
+                if (!hasPowerUp)
+                {
+                    movementController.setJumpForce(movementController.defaultJumpForce * powerUpJumpScalar);
+                    powerUpText.SetText("Jump Boost!");
+                    Invoke("cleansePowerUps", decayTime);
+                    hasPowerUp = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             case 3:
-                movementController.hasDoubleJump = true;
-                powerUpText.SetText("Double Jump!");
-                break;
+                if (!hasPowerUp)
+                {
+                    movementController.hasDoubleJump = true;
+                    powerUpText.SetText("Double Jump!");
+                    Invoke("cleansePowerUps", decayTime);
+                    hasPowerUp = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             case 4:
-                movementController.hasJetPack = true;
-                powerUpText.SetText("Jet pack!");
-                break;
+                if (!hasPowerUp)
+                {
+                    movementController.hasJetPack = true;
+                    powerUpText.SetText("Jet pack!");
+                    Invoke("cleansePowerUps", decayTime);
+                    hasPowerUp = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             case 5:
-                movementController.hasDash = true;
-                powerUpText.SetText("Dash!");
-                break;
+                if (!hasPowerUp)
+                {
+                    movementController.hasDash = true;
+                    powerUpText.SetText("Dash!");
+                    Invoke("cleansePowerUps", decayTime);
+                    hasPowerUp = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             default:
                 break;
         }
@@ -69,5 +115,6 @@ public class PowerUpPlayer : MonoBehaviour
         movementController.hasJetPack = false;
         movementController.hasDash = false;
         powerUpText.SetText("");
+        hasPowerUp = false;
     }
 }
