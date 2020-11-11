@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414383cedda0f7540a559c7807298499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minOrthoSize: 9
+  minOrthoSize: 14
   maxOrthoSize: 14
   leftWall: {fileID: 120614603}
   rightWall: {fileID: 1411472213}
