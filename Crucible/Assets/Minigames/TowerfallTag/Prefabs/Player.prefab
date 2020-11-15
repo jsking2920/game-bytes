@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6247810710474551842}
+  bombAnimator: {fileID: 1622156169572504544}
+  bombTransform: {fileID: 2171661696528864507}
   defaultMoveSpeed: 10
   defaultJumpForce: 15
   playerNumber: 1
@@ -236,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2171661696528864507}
   - component: {fileID: 6187923427965791137}
+  - component: {fileID: 1622156169572504544}
   m_Layer: 0
   m_Name: red_bomb
   m_TagString: Untagged
@@ -308,3 +311,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1622156169572504544
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585948895667890738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcd945ed10c7075449b386cca9cc13cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

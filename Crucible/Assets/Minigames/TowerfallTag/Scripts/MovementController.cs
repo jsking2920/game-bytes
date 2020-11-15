@@ -6,6 +6,8 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public Animator animator;
+    public Animator bombAnimator;
+    public Transform bombTransform;
     //scaling factors for movement -- not affected by powerups
     public float defaultMoveSpeed;
     public float defaultJumpForce;
@@ -122,6 +124,16 @@ public class MovementController : MonoBehaviour
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
         animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
         GameObject bomb = GetComponent<Tag>().bomb;
+
+        //Explode if game is complete
+        float completion = MinigameController.Instance.GetPercentTimePassed();
+        if (completion >= 1)
+        {
+            bombAnimator.SetTrigger("explode");
+            //Scale the bomb to make the exlosion big
+            bombTransform.localScale = new Vector2(2, 2);
+        }
+        
         //Flip the sprite
         if (thisRigidBody.velocity.x > 0.1)
         {
