@@ -175,8 +175,7 @@ public class MovementController : MonoBehaviour
     {
         //UnityEngine.Debug.Log("collision");
         if (col.gameObject.tag == "wall")
-        {
-            
+        { 
             transform.parent = col.gameObject.transform;
         }
     }
@@ -184,7 +183,6 @@ public class MovementController : MonoBehaviour
     {
         if(col.gameObject.tag == "wall")
         {
-            UnityEngine.Debug.Log("exit");
             transform.parent = null;
         }
     }
