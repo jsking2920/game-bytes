@@ -120,21 +120,44 @@ public class MovementController : MonoBehaviour
 
             }
         }
+        //Animation stuff
+        tagged = GetComponent<Tag>().isTagged;
+        animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
+        GameObject bomb = GetComponent<Tag>().bomb;
+
         //Adjust speed for moving platforms
         if (transform.parent != null && transform.parent.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             Vector2 parentVelocity = transform.parent.gameObject.GetComponent<Rigidbody2D>().velocity;
             thisRigidBody.velocity += parentVelocity;
             animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x - parentVelocity.x));
+            if (thisRigidBody.velocity.x - parentVelocity.x > 0.1)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                bomb.transform.localPosition = new Vector3(Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
+            }
+            else if (thisRigidBody.velocity.x - parentVelocity.x < -0.1)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                bomb.transform.localPosition = new Vector3(-1f * Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
+            }
         }
         else
         {
             animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
+            //Flip the sprite
+            if (thisRigidBody.velocity.x > 0.1)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                bomb.transform.localPosition = new Vector3(Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
+            }
+            else if (thisRigidBody.velocity.x < -0.1)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                bomb.transform.localPosition = new Vector3(-1f * Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
+            }
         }
-        //Animation stuff
-        tagged = GetComponent<Tag>().isTagged;
-        animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
-        GameObject bomb = GetComponent<Tag>().bomb;
+        
 
         //Explode if game is complete
         float completion = MinigameController.Instance.GetPercentTimePassed();
@@ -145,17 +168,7 @@ public class MovementController : MonoBehaviour
             bombTransform.localScale = new Vector2(2, 2);
         }
         
-        //Flip the sprite
-        if (thisRigidBody.velocity.x > 0.1)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            bomb.transform.localPosition = new Vector3(Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
-        }
-        else if (thisRigidBody.velocity.x < -0.1)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            bomb.transform.localPosition = new Vector3(-1f * Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
-        }
+        
     }
 
     public void setMoveSpeed(float spd)
