@@ -63,6 +63,7 @@ public class MovementController : MonoBehaviour
             inputVector = new Vector2(MinigameInputHelper.GetHorizontalAxis(playerNumber) * moveSpeed, thisRigidBody.velocity.y);
             if (inputVector != thisRigidBody.velocity && !isDashing)
             {
+                
                 thisRigidBody.velocity = inputVector;
             }
 
@@ -119,10 +120,20 @@ public class MovementController : MonoBehaviour
 
             }
         }
+        //Adjust speed for moving platforms
+        if (transform.parent != null && transform.parent.gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            Vector2 parentVelocity = transform.parent.gameObject.GetComponent<Rigidbody2D>().velocity;
+            thisRigidBody.velocity += parentVelocity;
+            animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x - parentVelocity.x));
+        }
+        else
+        {
+            animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
+        }
         //Animation stuff
         tagged = GetComponent<Tag>().isTagged;
         animator.SetFloat("verticalVelocity", thisRigidBody.velocity.y);
-        animator.SetFloat("horizontalSpeed", Mathf.Abs(thisRigidBody.velocity.x));
         GameObject bomb = GetComponent<Tag>().bomb;
 
         //Explode if game is complete
@@ -145,7 +156,6 @@ public class MovementController : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
             bomb.transform.localPosition = new Vector3(-1f * Mathf.Abs(bomb.transform.localPosition.x), bomb.transform.localPosition.y, bomb.transform.localPosition.z);
         }
-
     }
 
     public void setMoveSpeed(float spd)
@@ -160,5 +170,22 @@ public class MovementController : MonoBehaviour
     {
         isDashing = false;
     }
-
+    //Attach to platforms to move with moving platforms
+    void OnCollisionStay2D(Collision2D col)
+    {
+        //UnityEngine.Debug.Log("collision");
+        if (col.gameObject.tag == "wall")
+        {
+            
+            transform.parent = col.gameObject.transform;
+        }
+    }
+    void  OnCollisionExit2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "wall")
+        {
+            UnityEngine.Debug.Log("exit");
+            transform.parent = null;
+        }
+    }
 }

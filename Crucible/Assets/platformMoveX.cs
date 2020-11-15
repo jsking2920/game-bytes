@@ -32,6 +32,7 @@ public class platformMoveX : MonoBehaviour
             movementVector = Vector3.left * speed;
         }
         thisRigidBody.velocity = movementVector;
+        //thisRigidBody.MovePosition(transform.position + movementVector*Time.deltaTime);
         if (transform.position.x >= rightBound) moveRight = false;
         if (transform.position.x <= leftBound) moveRight = true;
 
