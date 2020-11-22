@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e15ce27a3b28b498c2dcfffd025305, type: 3}
   m_Name: Minigame
   m_EditorClassIdentifier: 
-  Name: Towerfall Tag
-  Description: Don't be "it" when the timer runs out or you lose
+  Name: Bombastic
+  Description: Stick the other player with the bomb before the timer runs out or
+    you lose!
   Year: 2020
   Semester: 0
   Thumbnail: {fileID: 21300000, guid: 05d2b34c5d3a365448761905bbad7958, type: 3}
-  CreatorNames: Scott King, Nathan Oswell, Nicholas Hungria, Dora Xiao
-  P1_Objective: Don't be "it"
-  P2_Objective: Don't be "it"
+  CreatorNames: Scott King, Nathan Oswell, Nicholas Hungria, Anqi Chen
+  P1_Objective: Stick the other player with the bomb!
+  P2_Objective: Stick the other player with the bomb!
   P1_JoystickDescription: Movement
   P1_Button1Description: Jump
-  P1_Button2Description: None
+  P1_Button2Description: Dash
   P2_JoystickDescription: Movement
   P2_Button1Description: Jump
-  P2_Button2Description: None
+  P2_Button2Description: Dash
   GameScene:
     sceneAsset: {fileID: 102900000, guid: da97d35142268994f97934479625f405, type: 3}
     scenePath: Assets/Minigames/_MinigameTemplate/Scene_Template.unity
