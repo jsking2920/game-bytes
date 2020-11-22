@@ -28,11 +28,13 @@ public class Tag : MonoBehaviour
         if (isTagged)
         {
             bomb.GetComponent<SpriteRenderer>().enabled = true;
+            bomb.GetComponent<ParticleSystem>().Play();
         }
         else
         {
             //Set the player's score to 1 since they're currently winning
             bomb.GetComponent<SpriteRenderer>().enabled = false;
+            bomb.GetComponent<ParticleSystem>().Stop();
             MinigameController.Instance.AddScore(playerNumber, 1);
         }
     }
@@ -45,6 +47,7 @@ public class Tag : MonoBehaviour
             isTagged = true;
             MinigameController.Instance.AddScore(playerNumber, -1);
             bomb.GetComponent<SpriteRenderer>().enabled = true;
+            bomb.GetComponent<ParticleSystem>().Play();
             movementController.stunned = true;
             movementController.stunTime = movementController.stunDuration;
 
@@ -55,6 +58,7 @@ public class Tag : MonoBehaviour
             isTagged = false;
             MinigameController.Instance.AddScore(playerNumber, 1);
             bomb.GetComponent<SpriteRenderer>().enabled = false;
+            bomb.GetComponent<ParticleSystem>().Stop();
         }
 
     }
