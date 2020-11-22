@@ -164,8 +164,12 @@ public class MovementController : MonoBehaviour
         if (completion >= 1)
         {
             bombAnimator.SetTrigger("explode");
+            //Stop bomb particles
+            bombAnimator.gameObject.GetComponent<ParticleSystem>().Stop();
+            bombAnimator.gameObject.GetComponent<ParticleSystem>().Clear();
             //Scale the bomb to make the exlosion big
             bombTransform.localScale = new Vector2(2, 2);
+   
         }
         
         
