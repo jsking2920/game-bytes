@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tag : MonoBehaviour
 {
     //tracks whether or not a player is tagged
-    public bool isTagged = false;
+    public bool isTagged;
 
     public GameObject bomb;
 
@@ -24,6 +24,7 @@ public class Tag : MonoBehaviour
         movementController = GetComponent<MovementController>();
 
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
+        /*
         //sets the player that starts tagged to the appropriate sprite
         if (isTagged)
         {
@@ -37,6 +38,7 @@ public class Tag : MonoBehaviour
             bomb.GetComponent<ParticleSystem>().Stop();
             MinigameController.Instance.AddScore(playerNumber, 1);
         }
+        */
     }
 
     void OnCollisionEnter2D(Collision2D col)
