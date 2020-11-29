@@ -11,7 +11,7 @@ public class PowerUpPlayer : MonoBehaviour
     public float powerUpJumpScalar = 1.5f;
     public TextMeshProUGUI powerUpText;
     public float decayTime;
-    private bool hasPowerUp = false;
+    public bool hasPowerUp = false;
 
     MovementController movementController;
     int playerNumber;
@@ -41,7 +41,7 @@ public class PowerUpPlayer : MonoBehaviour
                     movementController.setMoveSpeed(movementController.defaultMoveSpeed * powerUpSpeedScalar);
                     powerUpText.SetText("Speed boost!");
                     Invoke("cleansePowerUps", decayTime);
-                    hasPowerUp = true;
+                    //hasPowerUp = true; set in sfx player
                     break;
                 }
                 else
@@ -54,7 +54,7 @@ public class PowerUpPlayer : MonoBehaviour
                     movementController.setJumpForce(movementController.defaultJumpForce * powerUpJumpScalar);
                     powerUpText.SetText("Jump Boost!");
                     Invoke("cleansePowerUps", decayTime);
-                    hasPowerUp = true;
+                    //hasPowerUp = true;
                     break;
                 }
                 else
@@ -67,7 +67,7 @@ public class PowerUpPlayer : MonoBehaviour
                     movementController.hasDoubleJump = true;
                     powerUpText.SetText("Double Jump!");
                     Invoke("cleansePowerUps", decayTime);
-                    hasPowerUp = true;
+                    //hasPowerUp = true;
                     break;
                 }
                 else
@@ -80,7 +80,7 @@ public class PowerUpPlayer : MonoBehaviour
                     movementController.hasJetPack = true;
                     powerUpText.SetText("Jet pack!");
                     Invoke("cleansePowerUps", decayTime);
-                    hasPowerUp = true;
+                    //hasPowerUp = true;
                     break;
                 }
                 else
@@ -93,7 +93,7 @@ public class PowerUpPlayer : MonoBehaviour
                     movementController.hasDash = true;
                     powerUpText.SetText("Dash!");
                     Invoke("cleansePowerUps", decayTime);
-                    hasPowerUp = true;
+                    //hasPowerUp = true;
                     break;
                 }
                 else

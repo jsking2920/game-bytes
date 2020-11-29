@@ -7,7 +7,6 @@ public class powerUpPickUp : MonoBehaviour
 {
     //amount that playes speed is boosted by
     public float speedBoost;
-    public AudioSource sound;
 
     //when something collides with this trigger, this function is called
     void OnTriggerEnter2D(Collider2D col)
@@ -18,7 +17,6 @@ public class powerUpPickUp : MonoBehaviour
             System.Random rnd = new System.Random();
             int powerUpType = rnd.Next(1, 6);
             powerUpPlayer.setPowerUp(powerUpType);
-            sound.Play();
             Destroy(this.gameObject);
         }
   
