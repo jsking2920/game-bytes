@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Minigames/TowerfallTag/Scene.unity
+- path: Assets/Minigames/Bombastic/Scene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

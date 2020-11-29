@@ -78,5 +78,6 @@ public class cameraFollow : MonoBehaviour
 
         //cam.transform.position = new Vector3(camX, camY, cam.transform.position.z);
         cam.transform.position = Vector3.Slerp(cam.transform.position, new Vector3(camX, camY, cam.transform.position.z), followTimeDelta);
+        AspectUtility.SetCamera();
     }
 }
