@@ -2438,6 +2438,11 @@ PrefabInstance:
       propertyPath: powerUpSpeedScalar
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 8631490951404957601, guid: 463466b5826ecfa45ab72175040ccc75,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463466b5826ecfa45ab72175040ccc75, type: 3}
 --- !u!1 &1829795939 stripped
@@ -2832,7 +2837,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 73e0c1b4f86d82b4b94412a0c6eb62d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.379
+  m_Volume: 0.199
   m_Pitch: 1
   Loop: 0
   Mute: 0
