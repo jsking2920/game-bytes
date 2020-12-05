@@ -12,7 +12,7 @@ public class MovementController : MonoBehaviour
     public float defaultMoveSpeed;
     public float defaultJumpForce;
     //scaling facotrs for movement -- affected by powerups
-    float moveSpeed;
+    public float moveSpeed;
     float jumpForce;
     //player in control of this object
     public int playerNumber;
